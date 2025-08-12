@@ -40,6 +40,16 @@ jobs:
       - name: Run PHP Lint
         run: find _api/ -type f -name "*.php" -exec php -l {} \;
 
+      - name: Run PHP_CodeSniffer (PSR-12)
+        run: |
+          composer require --dev squizlabs/php_codesniffer
+          ./vendor/bin/phpcs --standard=PSR12 _api/
+
+      - name: Run PHPStan Static Analysis (level 5)
+        run: |
+          composer require --dev phpstan/phpstan
+          ./vendor/bin/phpstan analyse _api/ --level=5
+
       # Uncomment if you have PHPUnit tests
       # - name: Run tests
       #   run: vendor/bin/phpunit
