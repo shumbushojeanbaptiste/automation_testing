@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, pdo, pdo_mysql
+          coverage: none
+
+      - name: Install Composer
+        run: |
+          EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)"
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          ACTUAL_SIGNATURE="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+          if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]; then
+            >&2 echo 'ERROR: Invalid installer signature'
+            rm composer-setup.php
+            exit 1
+          fi
+          php composer-setup.php --quiet
+          rm composer-setup.php
+          mv composer.phar /usr/local/bin/composer
+
+      - name: Install dependencies (if composer.json exists)
+        run: |
+          if [ -f composer.json ]; then
+            composer install --no-interaction --prefer-dist
+          fi
+
+      - name: Set up MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql version: '8.0'
+          mysql database: 'fin_tracker'
+          mysql user: 'root'
+          mysql password: 'root'
+
+      - name: Import database schema
+        run: |
+          mysql -h 127.0.0.1 -u root -proot fin_tracker < fin_tracker_schema.sql
+
+      - name: Run PHP Lint
+        run: find _api/ -type f -name "*.php" -exec php -l {} \;
+
+      # Uncomment if you have PHPUnit tests
+      # - name: Run tests
+      #   run: vendor/bin/phpunit
+
+      - name: Check API directory structure
+        run: |
+          test -d _api/controllers
+          test -d _api/models
+          test -f _api/config/database.php
