@@ -1,0 +1,20 @@
+[24-May-2025 18:31:36 UTC] PHP Warning:  require_once(driving_school_api/routes/api.php): Failed to open stream: No such file or directory in /home/haub1/public_html/driving.hau.bi/_api/index.php on line 2
+[24-May-2025 18:31:36 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'driving_school_api/routes/api.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/haub1/public_html/driving.hau.bi/_api/index.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/haub1/public_html/driving.hau.bi/_api/index.php on line 2
+[24-May-2025 18:31:40 UTC] PHP Warning:  require_once(driving_school_api/routes/api.php): Failed to open stream: No such file or directory in /home/haub1/public_html/driving.hau.bi/_api/index.php on line 2
+[24-May-2025 18:31:40 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'driving_school_api/routes/api.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/haub1/public_html/driving.hau.bi/_api/index.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/haub1/public_html/driving.hau.bi/_api/index.php on line 2
+[24-May-2025 18:32:11 UTC] PHP Warning:  require_once(../routes/api.php): Failed to open stream: No such file or directory in /home/haub1/public_html/driving.hau.bi/_api/index.php on line 2
+[24-May-2025 18:32:11 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../routes/api.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/haub1/public_html/driving.hau.bi/_api/index.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/haub1/public_html/driving.hau.bi/_api/index.php on line 2
+[24-May-2025 18:32:14 UTC] PHP Warning:  require_once(../routes/api.php): Failed to open stream: No such file or directory in /home/haub1/public_html/driving.hau.bi/_api/index.php on line 2
+[24-May-2025 18:32:14 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../routes/api.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/haub1/public_html/driving.hau.bi/_api/index.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/haub1/public_html/driving.hau.bi/_api/index.php on line 2
