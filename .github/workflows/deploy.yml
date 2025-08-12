@@ -19,14 +19,8 @@ jobs:
           server: ftp.cone.rw
           username: financeuser@finance.cone.rw
           password: ${{ secrets.FTP_PASSWORD }}
-<<<<<<< HEAD
           local-dir: _api/
           server-dir: /public_html/finance.cone.rw/
           protocol: ftp
           port: 21
           log-level: verbose
-=======
-          passive: true
-          local-dir: ./
-          server-dir: /public_html/finance.cone.rw/
->>>>>>> 6ca0c5afebf283590ac9c87f421a6406e420c618
