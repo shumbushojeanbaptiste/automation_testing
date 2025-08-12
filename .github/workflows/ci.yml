@@ -7,6 +7,7 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -17,41 +18,42 @@ jobs:
           extensions: mbstring, pdo, pdo_mysql
           coverage: none
 
-      - name: Install Composer
-        run: |
-          EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)"
-          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-          ACTUAL_SIGNATURE="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
-          if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]; then
-            >&2 echo 'ERROR: Invalid installer signature'
-            rm composer-setup.php
-            exit 1
-          fi
-          php composer-setup.php --quiet
-          rm composer-setup.php
-          mv composer.phar /usr/local/bin/composer
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-      - name: Install dependencies (if composer.json exists)
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
         run: |
           if [ -f composer.json ]; then
             composer install --no-interaction --prefer-dist
           fi
 
-      - name: Run PHP Lint
+      - name: PHP Lint
         run: find _api/ -type f -name "*.php" -exec php -l {} \;
 
-      - name: Run PHP_CodeSniffer (PSR-12)
+      - name: PHP_CodeSniffer (PSR-12)
         run: |
-          composer require --dev squizlabs/php_codesniffer
+          if [ ! -f vendor/bin/phpcs ]; then
+            composer require --dev squizlabs/php_codesniffer
+          fi
           ./vendor/bin/phpcs --standard=PSR12 _api/
 
-      - name: Run PHPStan Static Analysis (level 5)
+      - name: PHPStan Static Analysis (level 5)
         run: |
-          composer require --dev phpstan/phpstan
+          if [ ! -f vendor/bin/phpstan ]; then
+            composer require --dev phpstan/phpstan
+          fi
           ./vendor/bin/phpstan analyse _api/ --level=5
 
       # Uncomment if you have PHPUnit tests
-      # - name: Run tests
+      # - name: Run PHPUnit
       #   run: vendor/bin/phpunit
 
       - name: Check API directory structure
