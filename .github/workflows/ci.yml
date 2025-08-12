@@ -1,3 +1,4 @@
+
 name: CI
 
 on:
@@ -38,7 +39,6 @@ jobs:
       - name: PHP Lint
         run: find _api/ -type f -name "*.php" -exec php -l {} \;
 
-<<<<<<< HEAD
       - name: PHP_CodeSniffer (PSR-12)
         run: |
           if [ ! -f vendor/bin/phpcs ]; then
@@ -51,16 +51,6 @@ jobs:
           if [ ! -f vendor/bin/phpstan ]; then
             composer require --dev phpstan/phpstan
           fi
-=======
-      - name: Run PHP_CodeSniffer (PSR-12)
-        run: |
-          composer require --dev squizlabs/php_codesniffer
-          ./vendor/bin/phpcs --standard=PSR12 _api/
-
-      - name: Run PHPStan Static Analysis (level 5)
-        run: |
-          composer require --dev phpstan/phpstan
->>>>>>> main
           ./vendor/bin/phpstan analyse _api/ --level=5
 
       # Uncomment if you have PHPUnit tests
@@ -72,3 +62,7 @@ jobs:
           test -d _api/controllers
           test -d _api/models
           test -f _api/config/database.php
+
+
+
+
