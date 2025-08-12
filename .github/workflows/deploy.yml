@@ -19,6 +19,9 @@ jobs:
           server: ftp.cone.rw
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+<<<<<<< HEAD
           passive: true
+=======
+>>>>>>> 1d1e9456a1e055133490e528e529f4205bc25e19
           local-dir: ./
           server-dir: /public_html/finance.cone.rw/
