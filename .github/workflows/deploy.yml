@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+<<<<<<< HEAD
 
     steps:
       - name: Checkout Code
@@ -15,9 +16,24 @@ jobs:
 
       - name: Upload via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.0.0
+=======
+    steps:
+      # Step 1: Get your code from GitHub
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Upload via FTP to your subdomain folder
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+>>>>>>> main
         with:
           server: ftp.cone.rw
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+<<<<<<< HEAD
           local-dir: ./
           server-dir: /public_html/finance.cone.rw/
+=======
+          local-dir: ./   # local project folder
+          server-dir: /public_html/finance.cone.rw/  # exact path for your subdomain
+>>>>>>> main
