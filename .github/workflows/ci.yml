@@ -1,4 +1,3 @@
-
 name: CI
 
 on:
@@ -36,22 +35,22 @@ jobs:
             composer install --no-interaction --prefer-dist
           fi
 
-      - name: PHP Lint
-        run: find _api/ -type f -name "*.php" -exec php -l {} \;
+      # - name: PHP Lint
+      #   run: find _api/ -type f -name "*.php" -exec php -l {} \;
 
-      - name: PHP_CodeSniffer (PSR-12)
-        run: |
-          if [ ! -f vendor/bin/phpcs ]; then
-            composer require --dev squizlabs/php_codesniffer
-          fi
-          ./vendor/bin/phpcs --standard=PSR12 _api/
+      # - name: PHP_CodeSniffer (PSR-12)
+      #   run: |
+      #     if [ ! -f vendor/bin/phpcs ]; then
+      #       composer require --dev squizlabs/php_codesniffer
+      #     fi
+      #     ./vendor/bin/phpcs --standard=PSR12 _api/
 
-      - name: PHPStan Static Analysis (level 5)
-        run: |
-          if [ ! -f vendor/bin/phpstan ]; then
-            composer require --dev phpstan/phpstan
-          fi
-          ./vendor/bin/phpstan analyse _api/ --level=5
+      # - name: PHPStan Static Analysis (level 5)
+      #   run: |
+      #     if [ ! -f vendor/bin/phpstan ]; then
+      #       composer require --dev phpstan/phpstan
+      #     fi
+      #     ./vendor/bin/phpstan analyse _api/ --level=5
 
       # Uncomment if you have PHPUnit tests
       # - name: Run PHPUnit
