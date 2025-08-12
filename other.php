@@ -6,7 +6,14 @@ echo " and teamates and ITEC international mission is software development";
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> main
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 8cc0182aef4ba21fa8b4433aa5c54e02f2769980
 =======
 echo "Jean Baptiste";
 =======
@@ -36,6 +43,11 @@ echo "Jean Baptiste";
 >>>>>>> bb6a1406ba4fc7990ec765b1dfda3fbf6c530979
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> main
+>>>>>>> 817876f4ce67defe9e1cb658c3ac3ad4ea018938
+>>>>>>> 8cc0182aef4ba21fa8b4433aa5c54e02f2769980
 >>>>>>> main
 >>>>>>> 817876f4ce67defe9e1cb658c3ac3ad4ea018938
 >>>>>>> main
