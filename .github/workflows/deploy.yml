@@ -1,10 +1,9 @@
-
 name: Deploy to cPanel Hosting (finance.cone.rw)
 
 on:
   push:
     branches:
-      - main  # Deploy only when main branch changes
+      - main
 
 jobs:
   deploy:
@@ -14,12 +13,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Upload via FTP (passive mode)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.0.0
         with:
           server: ftp.cone.rw
-          username: ${{ secrets.FTP_USERNAME }}
+          username: financeuser@finance.cone.rw
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
+          local-dir: _api/
           server-dir: /public_html/finance.cone.rw/
-          passive: true
+          protocol: ftp
+          port: 21
+          log-level: verbose
