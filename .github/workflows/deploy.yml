@@ -13,12 +13,14 @@
 #       - name: Checkout Code
 #         uses: actions/checkout@v3
 
-      - name: Upload via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.0.0
-        with:
-          server: ftp.cone.rw
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          passive: true
-          local-dir: ./
-          server-dir: /public_html/finance.cone.rw/
+#       - name: Upload via FTP
+#         uses: SamKirkland/FTP-Deploy-Action@v4.0.0
+#         with:
+#           server: ftp.cone.rw
+#           username: financeuser@finance.cone.rw
+#           password: ${{ secrets.FTP_PASSWORD }}
+#           local-dir: _api/
+#           server-dir: /public_html/finance.cone.rw/
+#           protocol: ftp
+#           port: 21
+#           log-level: verbose
