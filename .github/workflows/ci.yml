@@ -62,6 +62,15 @@ jobs:
           test -d _api/models
           test -f _api/config/database.php
 
+      - name: Check for database schema changes
+        run: |
+          if git fetch origin main && git diff --quiet origin/main -- fin_tracker_schema.sql; then
+            echo "No database schema changes detected."
+          else
+            echo "Database schema file (fin_tracker_schema.sql) has changed!"
+            exit 1
+          fi
+
 
 
 
