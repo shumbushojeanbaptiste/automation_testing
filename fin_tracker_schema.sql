@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2025 at 09:24 AM
+-- Generation Time: Aug 14, 2025 at 09:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -866,17 +866,6 @@ INSERT INTO `tbl_roles` (`role_id`, `role_name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_schema_change`
---
-
-CREATE TABLE `tbl_schema_change` (
-  `id` int(11) NOT NULL,
-  `names` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_users`
 --
 
@@ -932,26 +921,6 @@ CREATE TABLE `view_expenses_audit` (
 DROP TABLE IF EXISTS `view_expenses_audit`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_expenses_audit`  AS SELECT `tbl_expenses_audit`.`audit_id` AS `audit_id`, `tbl_expenses_audit`.`action_type` AS `action_type`, `tbl_expenses_audit`.`expense_id` AS `expense_id`, `tbl_expenses_audit`.`expense_category` AS `expense_category`, `tbl_expenses_audit`.`description` AS `description`, `tbl_expenses_audit`.`amount` AS `amount`, `tbl_expenses_audit`.`payment_date` AS `payment_date`, `tbl_expenses_audit`.`recorded_by` AS `recorded_by`, `tbl_expenses_audit`.`payment_mode` AS `payment_mode`, `tbl_expenses_audit`.`consumer_id` AS `consumer_id`, `tbl_expenses_audit`.`created_at` AS `created_at`, `tbl_expenses_audit`.`action_time` AS `action_time` FROM `tbl_expenses_audit` ;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `tbl_schema_change`
---
-ALTER TABLE `tbl_schema_change`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbl_schema_change`
---
-ALTER TABLE `tbl_schema_change`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
