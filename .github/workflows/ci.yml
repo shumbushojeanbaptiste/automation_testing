@@ -64,14 +64,10 @@ jobs:
 
       - name: Check for database schema changes
         run: |
-          git fetch origin main
-          if git diff --quiet origin/main -- fin_tracker_schema.sql; then
+          if git fetch origin main && git diff --quiet origin/main -- fin_tracker_schema.sql; then
             echo "No database schema changes detected."
           else
             echo "Database schema file (fin_tracker_schema.sql) has changed!"
-            echo "---- Schema diff ----"
-            git diff origin/main -- fin_tracker_schema.sql
-            echo "---------------------"
             exit 1
           fi
 
