@@ -1,4 +1,4 @@
-name: Deploy to cPanel Hosting (finance.cone.rw)
+name: Deploy to cPanel Hosting (itec.rw)
 
 on:
   push:
