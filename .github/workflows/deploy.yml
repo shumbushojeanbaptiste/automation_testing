@@ -19,8 +19,9 @@ jobs:
           server: ftp.itec.rw
           username: finance@banking.itec.rw
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: _api/
+          local-dir: ./_api/
           server-dir: /public_html/banking.itec.rw/
           protocol: ftp
           port: 21
           log-level: verbose
+          dangerous-clean-slate: true
