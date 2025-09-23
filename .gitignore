@@ -1,0 +1,54 @@
+# =====================
+# OS-specific
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# IDE / Editor configs
+# =====================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# =====================
+# Composer / Dependencies
+# =====================
+vendor/
+
+# =====================
+# Environment / Config Files
+# =====================
+.env
+config.php
+db.php
+secret.php
+
+# =====================
+# Logs, Cache, Sessions
+# =====================
+*.log
+cache/
+tmp/
+sessions/
+
+# =====================
+# User uploads / files
+# =====================
+uploads/
+files/
+images/
+
+# =====================
+# Backup / temp files
+# =====================
+*.bak
+*.swp
+*.tmp
+
+# =====================
+# Private Backend API
+# =====================
+_api/   # <- This folder will NOT be pushed to GitHub
+_api.zip
