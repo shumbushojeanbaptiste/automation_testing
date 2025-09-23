@@ -13,14 +13,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Upload via FTP
+      - name: Upload file via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.0.0
         with:
           server: ftp.itec.rw
           username: finance@banking.itec.rw
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./_api/
-          server-dir: /public_html/banking.itec.rw/
+          server-dir: /files/
           protocol: ftp
           port: 21
           log-level: verbose
