@@ -3,27 +3,33 @@ name: Deploy to cPanel Hosting (finance.itec.rw)
 on:
   push:
     branches:
-      - main
+      - main  # Buri gihe main branch ihindutse, deploy irakora
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout repo
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Upload via FTP
-  uses: SamKirkland/FTP-Deploy-Action@v4.0.0
-  with:
-    server: ftp.itec.rw
-    username: finance@banking.itec.rw
-    password: ${{ secrets.FTP_PASSWORD }}
-    local-dir: ./_api/
-    server-dir: /banking.itec.rw/finance/
-    protocol: ftp
-    port: 21
-    log-level: verbose
-    dangerous-clean-slate: true
-    use-binary: true
+      # 2️⃣ List files (optional debug)
+      - name: List files that can be deployed
+        run: ls -R ./_api/
 
+      # 3️⃣ Upload via FTP
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.0.0
+        with:
+          server: ftp.itec.rw
+          username: finance@banking.itec.rw
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./_api/
+          server-dir: /banking.itec.rw/finance/  # ← folder nyayo ku server
+          protocol: ftp
+          port: 21
+          log-level: verbose
+          dangerous-clean-slate: true   # gusiba no gusubizaho byose
+          use-binary: true             # kugirango ama file yose yohereze neza (PHP, config, etc.)
+          exclude: ""                  # ntabwo ihisha ama file na folder, byose byoherezwa
